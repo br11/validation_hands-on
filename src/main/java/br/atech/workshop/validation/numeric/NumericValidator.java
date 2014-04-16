@@ -67,7 +67,7 @@ public class NumericValidator implements ConstraintValidator<Numeric, Object> {
 			buildConstraintViolation(context, "<<message>>");
 			return false;
 		} else if (big.compareTo(max) > 0) {
-			// TODO Exercício 2.3
+			// TODO Exercício 2.2
 			buildConstraintViolation(context, "<<message>>");
 			return false;
 		} else if (!util.isValid(value, integerSize, fractionSize)) {

@@ -16,13 +16,11 @@ public class Emprego {
 	//TODO Exercício 1.3
 	private String empresa;
 
-	//TODO Exercício 1.4
 	private Date admissao;
 
-	//TODO Exercício 1.5
 	private Date demissao;
 
-	//TODO Exercício 2.4
+	//TODO Exercício 2.3
 	private BigDecimal ultimoSalario;
 
 	/**
@@ -113,25 +111,5 @@ public class Emprego {
 	 */
 	public void setUltimoSalario(BigDecimal ultimoSalario) {
 		this.ultimoSalario = ultimoSalario;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		return new IdentityUtil().hashCode(this, "empresa", "adimissao");
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		return new IdentityUtil().equals(this, obj, "empresa", "adimissao");
 	}
 }

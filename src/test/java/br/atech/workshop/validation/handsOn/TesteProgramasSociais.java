@@ -19,11 +19,11 @@ public class TesteProgramasSociais {
 	public void testeBolsaFamiliaRequired() {
 		Cidadao cidadao = new Cidadao();
 
-		new TestUtil(Default.class, Perfis.BolsaFamilia.class).checkViolations(
+		new TestUtil(Default.class, Programas.BolsaFamilia.class).checkViolations(
 				cidadao, "cpf", "nome", "dataDeNascimento", "dependentes");
 
 		cidadao.getDependentes().add(new MenorDeIdade());
-		new TestUtil(Default.class, Perfis.BolsaFamilia.class).checkViolations(
+		new TestUtil(Default.class, Programas.BolsaFamilia.class).checkViolations(
 				cidadao, "cpf", "nome", "dataDeNascimento",
 				"dependentes[].nome", "dependentes[].dataDeNascimento");
 	}
@@ -40,13 +40,13 @@ public class TesteProgramasSociais {
 		cidadao.setDataDeNascimento(util.add(new Date(), Calendar.YEAR, -40));
 		dependente
 				.setDataDeNascimento(util.add(new Date(), Calendar.YEAR, -10));
-		new TestUtil(Default.class, Perfis.BolsaFamilia.class)
+		new TestUtil(Default.class, Programas.BolsaFamilia.class)
 				.checkViolations(cidadao);
 
 		cidadao.setDataDeNascimento(util.add(new Date(), Calendar.YEAR, -17));
 		dependente
 				.setDataDeNascimento(util.add(new Date(), Calendar.YEAR, -19));
-		new TestUtil(Default.class, Perfis.BolsaFamilia.class).checkViolations(
+		new TestUtil(Default.class, Programas.BolsaFamilia.class).checkViolations(
 				cidadao, "dataDeNascimento", "dependentes[].dataDeNascimento");
 	}
 
@@ -54,12 +54,12 @@ public class TesteProgramasSociais {
 	public void testeSeguroDesempregoRequired() {
 		Cidadao cidadao = new Cidadao();
 
-		new TestUtil(Default.class, Perfis.SeguroDesemprego.class)
+		new TestUtil(Default.class, Programas.SeguroDesemprego.class)
 				.checkViolations(cidadao, "cpf", "nome", "dataDeNascimento",
 						"empregos");
 
 		cidadao.getEmpregos().add(new Emprego());
-		new TestUtil(Default.class, Perfis.SeguroDesemprego.class)
+		new TestUtil(Default.class, Programas.SeguroDesemprego.class)
 				.checkViolations(cidadao, "cpf", "nome", "dataDeNascimento",
 						"empregos[].empresa", "empregos[].admissao",
 						"empregos[].demissao");
@@ -80,7 +80,7 @@ public class TesteProgramasSociais {
 
 		cidadao.getEmpregos().add(emprego);
 
-		new TestUtil(Default.class, Perfis.SeguroDesemprego.class)
+		new TestUtil(Default.class, Programas.SeguroDesemprego.class)
 				.checkViolations(cidadao);
 	}
 }

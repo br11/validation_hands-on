@@ -7,7 +7,7 @@ import br.atech.workshop.validation.TestUtil;
 
 public class TesteEmprego {
 
-	// TODO Exercício 1.6
+	// TODO Exercício 1.4
 	public void testRequired() {
 		Emprego bean = new Emprego();
 
@@ -17,15 +17,15 @@ public class TesteEmprego {
 		new TestUtil().checkViolations(bean, "empresa", "admissao");
 	}
 
-	// TODO Exercício 1.7
+	// TODO Exercício 1.5
 	public void testSeguroDesemprego() {
 		Emprego bean = new Emprego();
 
-		new TestUtil(Perfis.SeguroDesemprego.class).checkViolations(bean,
+		new TestUtil(Programas.SeguroDesemprego.class).checkViolations(bean,
 				"demissao");
 	}
 
-	// TODO Exercício 2.5
+	// TODO Exercício 2.4
 	public void testUltimoSalario() {
 		Emprego bean = new Emprego();
 		bean.setEmpresa("XPTO");

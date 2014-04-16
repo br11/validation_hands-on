@@ -12,7 +12,7 @@ public class MenorDeIdade {
 	private String nome;
 
 	// TODO Exercício 3.3
-	@Required(groups = Perfis.BolsaFamilia.class)
+	@Required(groups = Programas.BolsaFamilia.class)
 	private Date dataDeNascimento;
 	
 	/**
@@ -44,25 +44,4 @@ public class MenorDeIdade {
 	public void setDataDeNascimento(Date dataDeNascimento) {
 		this.dataDeNascimento = dataDeNascimento;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		return new IdentityUtil().hashCode(this, "nome");
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		return new IdentityUtil().equals(this, obj, "nome");
-	}
-
 }

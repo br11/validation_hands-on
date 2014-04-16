@@ -27,7 +27,7 @@ public class TesteCidadao {
 	public void testSeguroDesemprego() {
 		Cidadao bean = new Cidadao();
 		
-		new TestUtil(Perfis.SeguroDesemprego.class).checkViolations(bean,
+		new TestUtil(Programas.SeguroDesemprego.class).checkViolations(bean,
 				"dataDeNascimento", "empregos");
 	}
 
@@ -35,7 +35,7 @@ public class TesteCidadao {
 	public void testBolsaFamiliaRequired() {
 		Cidadao bean = new Cidadao();
 		
-		new TestUtil(Perfis.BolsaFamilia.class).checkViolations(bean,
+		new TestUtil(Programas.BolsaFamilia.class).checkViolations(bean,
 				"dataDeNascimento", "dependentes");
 	}
 
@@ -46,11 +46,11 @@ public class TesteCidadao {
 		bean.setNome("fulano de tal");
 
 		bean.setDataDeNascimento(util.add(new Date(), Calendar.YEAR, -17));
-		new TestUtil(Perfis.BolsaFamilia.class).checkViolations(bean,
+		new TestUtil(Programas.BolsaFamilia.class).checkViolations(bean,
 				"dataDeNascimento", "dependentes");
 
 		bean.setDataDeNascimento(util.add(new Date(), Calendar.YEAR, -18));
-		new TestUtil(Perfis.BolsaFamilia.class).checkViolations(bean,
+		new TestUtil(Programas.BolsaFamilia.class).checkViolations(bean,
 				"dependentes");
 	}
 

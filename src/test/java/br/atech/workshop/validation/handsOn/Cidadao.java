@@ -25,17 +25,17 @@ public class Cidadao {
 	@Required
 	private String nome;
 
-	@Required(groups = { Perfis.BolsaFamilia.class,
-			Perfis.SeguroDesemprego.class })
-	@DateRange(max = DateRange.Ranges.ThisYear, maxGap = -18, groups = Perfis.BolsaFamilia.class)
+	@Required(groups = { Programas.BolsaFamilia.class,
+			Programas.SeguroDesemprego.class })
+	@DateRange(max = DateRange.Ranges.ThisYear, maxGap = -18, groups = Programas.BolsaFamilia.class)
 	private Date dataDeNascimento;
 
 	@Valid
-	@Required(groups = Perfis.SeguroDesemprego.class)
+	@Required(groups = Programas.SeguroDesemprego.class)
 	private Set<Emprego> empregos = new LinkedHashSet<>();
 
 	@Valid
-	@Required(groups = Perfis.BolsaFamilia.class)
+	@Required(groups = Programas.BolsaFamilia.class)
 	private Set<MenorDeIdade> dependentes = new LinkedHashSet<>();
 
 	/**
@@ -126,25 +126,5 @@ public class Cidadao {
 	 */
 	public void setEmpregos(Set<Emprego> empregos) {
 		this.empregos = empregos;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		return new IdentityUtil().hashCode(this, "cpf");
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		return new IdentityUtil().equals(this, obj, "cpf");
 	}
 }

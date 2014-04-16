@@ -197,4 +197,32 @@ public class DateRangeUtil {
 		}
 		return true;
 	}
+
+	/**
+	 * 
+	 * @param idadeEmDias
+	 * @return
+	 */
+	public Date calculaDataDeNascimento(int idadeEmDias) {
+		return add(new Date(), Calendar.DAY_OF_MONTH, -idadeEmDias);
+	}
+
+	/**
+	 * 
+	 * @param idadeEmMeses
+	 * @return
+	 */
+	public Date calculaDataDeNascimento(char idadeEmMeses) {
+		return add(new Date(), Calendar.MONTH, -idadeEmMeses);
+	}
+
+	/**
+	 * 
+	 * @param idadeEmAnos
+	 * @return
+	 */
+	public Date calculaDataDeNascimento(byte idadeEmAnos) {
+		return add(new Date(), Calendar.YEAR, -idadeEmAnos);
+	}
+
 }

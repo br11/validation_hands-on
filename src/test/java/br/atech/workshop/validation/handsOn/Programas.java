@@ -1,6 +1,6 @@
 package br.atech.workshop.validation.handsOn;
 
-public class Perfis {
+public class Programas {
 
 	public static interface SeguroDesemprego {
 

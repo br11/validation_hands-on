@@ -26,7 +26,7 @@ public class TesteMenorDeIdade {
 	public void testBolsaFamiliaRequired() {
 		MenorDeIdade bean = new MenorDeIdade();
 
-		new TestUtil(Perfis.BolsaFamilia.class).checkViolations(bean,
+		new TestUtil(Programas.BolsaFamilia.class).checkViolations(bean,
 				"dataDeNascimento");
 	}
 
@@ -35,21 +35,42 @@ public class TesteMenorDeIdade {
 		MenorDeIdade bean = new MenorDeIdade();
 		bean.setNome("fulano de tal");
 
-		/* Nascido à 17 anos */
-		bean.setDataDeNascimento(util.add(new Date(), Calendar.YEAR, -17));
-		new TestUtil(Perfis.BolsaFamilia.class).checkViolations(bean);
+		/* idades em meses */
+		int recemNascido = 0;
+		int dezoito = (18 * 12);
+		int idadeAdultaQualquer = (21 * 12); // 21 anos
+
+		/* de recem nascido à 17 anos de idade é válido */
+		for (int idade = recemNascido; idade < dezoito; idade++) {
+			bean.setDataDeNascimento(util.calculaDataDeNascimento((char) idade));
+			new TestUtil(Programas.BolsaFamilia.class).checkViolations(bean);
+		}
 
 		/*
-		 * Nascido à 18 anos: valido até o final ano em que completa a
-		 * maioridade
+		 * No dia em que completa dezoito anos é válido.
 		 */
-		bean.setDataDeNascimento(util.add(new Date(), Calendar.YEAR, -18));
-		new TestUtil(Perfis.BolsaFamilia.class).checkViolations(bean);
+		Date dezoitoExatos = util.calculaDataDeNascimento((char) dezoito);
+		bean.setDataDeNascimento(dezoitoExatos);
+		new TestUtil(Programas.BolsaFamilia.class).checkViolations(bean);
 
-		/* Nascido à 19 anos: não atendo o requisito de menoridade */
-		bean.setDataDeNascimento(util.add(new Date(), Calendar.YEAR, -19));
-		new TestUtil(Perfis.BolsaFamilia.class).checkViolations(bean,
-				"dataDeNascimento");
+		/*
+		 * dezoito anos e uns dias - requisito diz ser valido até o final mês em
+		 * que completa a maioridade.
+		 */
+		Date inicioDoMes = util.set(dezoitoExatos, Calendar.DAY_OF_MONTH, 1);
+		bean.setDataDeNascimento(inicioDoMes);
+		new TestUtil(Programas.BolsaFamilia.class).checkViolations(bean);
+
+		/* prestes a completar 18 anos é válido */
+		Date fimDoMes = util.set(dezoitoExatos, Calendar.DAY_OF_MONTH, 28);
+		bean.setDataDeNascimento(fimDoMes);
+		new TestUtil(Programas.BolsaFamilia.class).checkViolations(bean);
+
+		/* 18 anos 1 um mês ou mais não é válido */
+		for (int idade = idadeAdultaQualquer; idade > dezoito; idade--) {
+			bean.setDataDeNascimento(util.calculaDataDeNascimento((char) idade));
+			new TestUtil(Programas.BolsaFamilia.class).checkViolations(bean,
+					"dataDeNascimento");
+		}
 	}
-
 }
